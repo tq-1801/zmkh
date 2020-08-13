@@ -1,6 +1,7 @@
 package com.example.demo.modules.account.service.serviceImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.example.demo.modules.account.dao.RoleDao;
@@ -10,6 +11,7 @@ import com.example.demo.modules.common.vo.Result;
 import com.example.demo.modules.common.vo.Result.ResultStatus;
 import com.example.demo.modules.utils.MD5Util;
 
+@Service
 public class RoleServiceImpl implements RoleService {
 
 	@Autowired
@@ -34,6 +36,7 @@ public class RoleServiceImpl implements RoleService {
 		return roleDao.getRoleByRoleName(roleName);
 	}
 
+	// 登录
 	@Override
 	public Result<Role> login(Role role) {
 		Role roleTemp = roleDao.getRoleByRoleName(role.getRoleName());

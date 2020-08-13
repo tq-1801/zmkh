@@ -1,11 +1,13 @@
 package com.example.demo.modules.account.dao;
 
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Select;
 
 import com.example.demo.modules.account.entity.Role;
 
+@Mapper
 public interface RoleDao {
 
 	@Insert("insert into role (role_name, password) " + "values (#{roleName}, #{password})")

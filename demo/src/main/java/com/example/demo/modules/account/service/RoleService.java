@@ -8,6 +8,7 @@ public interface RoleService {
 
 	Role getRoleByRoleName(String roleName);
 
+	// 登录
 	Result<Role> login(Role role);
 
 }
