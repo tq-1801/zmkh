@@ -35,14 +35,13 @@
 							<i class="fa fa-user"></i> 基础信息管理 <span class="fa fa-chevron-down"></span>
 						</a>
 						<ul class="nav child_menu">
-						    <li shiro:hasAnyRoles="admin,manager,staff,boos"><a href="/account/profile">客户</a></li>
-							<li shiro:hasAnyRoles="admin,manager,boos"><a href="/account/users">员工信息</a></li>
-							<li shiro:hasAnyRoles="admin,manager,boos"><a href="/account/roles">角色管理</a></li>
-							<li shiro:hasAnyRoles="admin,manager,boos"><a href="/account/resources"></a></li>
+						    <li ><a href="/account/customer">客户</a></li>
+							<li ><a href="/account/staff">员工信息</a></li>
+							<li ><a href="/account/roles">角色管理</a></li>
 						</ul>
 					</li>
-					<li shiro:hasAnyRoles="admin,manager,staff">
-						<a href="/common/dashboard">
+					<li >
+						<a href="/account/contract">
 							<i class="fa fa-dashboard"></i> 合同
 						</a>
 					</li>

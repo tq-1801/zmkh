@@ -7,9 +7,9 @@ public class Customer {
 	// 客户姓名
 	private String customerName;
 	// 客户经营范围
-	private String customerIndustry;
+	private String industry;
 	// 客户联系人
-	private String customerContacts;
+	private String contacts;
 	// 经营地址
 	private String address;
 	// 联系电话
@@ -37,20 +37,20 @@ public class Customer {
 		this.customerName = customerName;
 	}
 
-	public String getCustomerIndustry() {
-		return customerIndustry;
+	public String getIndustry() {
+		return industry;
 	}
 
-	public void setCustomerIndustry(String customerIndustry) {
-		this.customerIndustry = customerIndustry;
+	public void setIndustry(String industry) {
+		this.industry = industry;
 	}
 
-	public String getCustomerContacts() {
-		return customerContacts;
+	public String getContacts() {
+		return contacts;
 	}
 
-	public void setCustomerContacts(String customerContacts) {
-		this.customerContacts = customerContacts;
+	public void setContacts(String contacts) {
+		this.contacts = contacts;
 	}
 
 	public String getAddress() {

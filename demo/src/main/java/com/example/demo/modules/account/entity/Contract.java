@@ -11,7 +11,7 @@ public class Contract {
 	// 销售人员
 	private String person;
 	// 签约日期
-	private String contractName;
+	private String date;
 	// 合同金额
 	private String money;
 	// 回款金额
@@ -51,12 +51,12 @@ public class Contract {
 		this.person = person;
 	}
 
-	public String getContractName() {
-		return contractName;
+	public String getDate() {
+		return date;
 	}
 
-	public void setContractName(String contractName) {
-		this.contractName = contractName;
+	public void setDate(String date) {
+		this.date = date;
 	}
 
 	public String getMoney() {

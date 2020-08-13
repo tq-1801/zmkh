@@ -8,7 +8,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class CommonController {
 
 	/**
-	 * 127.0.0.1/common/dashboard 跳转到dashboard页面
+	 * 127.0.0.1/common/dashboard
+	 * 
+	 * 跳转到dashboard页面
 	 * 
 	 * @return
 	 */

@@ -56,7 +56,20 @@
 		</dependency>
 		<!-- mybatis 结束-->
 		
-				<!--spring-boot-configuration-processor 加载配置信息开始-->
+		<!-- pageHelper 分页插件-->
+		<dependency>
+		    <groupId>com.github.pagehelper</groupId>
+		    <artifactId>pagehelper-spring-boot-starter</artifactId>
+		    <version>1.2.12</version>
+		</dependency>
+		
+		<!-- jpa -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+		
+		<!--spring-boot-configuration-processor 加载配置信息开始-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-configuration-processor</artifactId>
@@ -93,11 +106,11 @@
 		<!-- shiro 结束-->
 		
 		<!-- thymeleaf对shiro的扩展包，支持页面书写shiro标签  开始-->
-		<!-- <dependency>
+		 <!-- <dependency>
 			<groupId>com.github.theborakompanioni</groupId>
 			<artifactId>thymeleaf-extras-shiro</artifactId>
 			<version>2.0.0</version>
-		</dependency> -->
+		</dependency>  -->
 		<!--thymeleaf-extras-shiro结束-->
 		
 		<dependency>
