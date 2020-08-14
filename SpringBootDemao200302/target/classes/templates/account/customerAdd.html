@@ -1,0 +1,45 @@
+<!-- 模态框（Modal） -->
+<div th:fragment="customerAdd" class="modal fade" id="customerAddModal" tabindex="-1"
+	customer="dialog" aria-labelledby="customerAddLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title" id="customerAddLabel"
+					style="font-size: 18px; font-weight: 500;">新增客户</h4>
+					<h4 class="modal-title" id="customerAddLabel"
+					style="font-size: 18px; font-weight: 500;">基本信息</h4>
+				<button type="button" class="close" data-dismiss="modal"
+					aria-hidden="true">&times;</button>
+			</div>
+			<div class="modal-body">
+				<form class="form-horizontal">
+					<div class="form-group row">
+						<label class="control-label col-md-0">姓名</label>
+						<div class="col-md-2">
+						
+							<input id="customerNameForAddPage" name="customerName" class="form-control" 
+								type="text" placeholder="">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="control-label col-md-0">客户联系人</label>
+						<div class="col-md-4">
+							<input id="categoryForAddPage" name="category" class="form-control" 
+								type="text" placeholder="">
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<!-- data-dismiss="modal"关闭模态框 -->
+				<a class="btn btn-secondary" href="#" data-dismiss="modal">
+					<i class="fa fa-fw fa-lg fa-times-circle"></i>取消
+				</a>
+				<button id="customerAddBtn" data-dismiss="modal" 
+					class="btn btn-primary" type="button">
+					<i class="fa fa-fw fa-lg fa-check-circle"></i>确定
+				</button>
+			</div>
+		</div>
+	</div>
+</div>

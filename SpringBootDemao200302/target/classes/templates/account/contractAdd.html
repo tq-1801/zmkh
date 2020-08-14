@@ -5,29 +5,67 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<h4 class="modal-title" id="contractAddLabel"
-					style="font-size: 18px; font-weight: 500;">Contract Add</h4>
+					style="font-size: 18px; font-weight: 500;">新增合同</h4>
 				<button type="button" class="close" data-dismiss="modal"
 					aria-hidden="true">&times;</button>
 			</div>
+			
 			<div class="modal-body">
 				<form class="form-horizontal">
 					<div class="form-group row">
-						<label class="control-label col-md-3">Contract Name</label>
-						<div class="col-md-8">
+						<label class="control-label col-md-0">合同名称</label>
+						<div class="col-md-4">
 							<input id="contractNameForAddPage" name="contractName" class="form-control" 
-								type="text" placeholder="Enter contract name">
+								type="text" placeholder="">
 						</div>
+						<label class="control-label col-md-0">合同类别</label>
+						<div class="col-md-4">
+							<input id="categoryForAddPage" name="category" class="form-control" 
+								type="text" placeholder="">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="control-label col-md-0">销售人员</label>
+						<div class="col-md-4">
+							<input id="personForAddPage" name="person" class="form-control" 
+								type="text" placeholder="">
+						</div>
+						<label class="control-label col-md-0">签约日期</label>
+						<div class="col-md-4">
+							<input id="dateForAddPage" name="date" class="form-control" 
+								type="text" placeholder="">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="control-label col-md-0">合同金额</label>
+						<div class="col-md-4">
+							<input id="personForAddPage" name="person" class="form-control" 
+								type="text" placeholder="">
+						</div>
+						<label class="control-label col-md-0">回款金额</label>
+						<div class="col-md-4">
+							<input id="dateForAddPage" name="date" class="form-control" 
+								type="text" placeholder="">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="control-label col-md-0">合同期限</label>
+						<div class="col-md-4">
+							<input id="personForAddPage" name="person" class="form-control" 
+								type="text" placeholder="">
+						</div>
+						
 					</div>
 				</form>
 			</div>
 			<div class="modal-footer">
 				<!-- data-dismiss="modal"关闭模态框 -->
 				<a class="btn btn-secondary" href="#" data-dismiss="modal">
-					<i class="fa fa-fw fa-lg fa-times-circle"></i>Cancel
+					<i class="fa fa-fw fa-lg fa-times-circle"></i>取消
 				</a>
 				<button id="contractAddBtn" data-dismiss="modal" 
 					class="btn btn-primary" type="button">
-					<i class="fa fa-fw fa-lg fa-check-circle"></i>Submit
+					<i class="fa fa-fw fa-lg fa-check-circle"></i>确定
 				</button>
 			</div>
 		</div>
