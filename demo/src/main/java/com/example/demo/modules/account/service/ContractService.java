@@ -11,6 +11,6 @@ public interface ContractService {
 	List<Contract> getContracts();
 
 	// 分页
-	PageInfo<Contract> getContracts(SearchVo searchVo);
+	PageInfo<Contract> getContractsBySearchVo(SearchVo searchVo);
 
 }

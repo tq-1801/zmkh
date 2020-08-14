@@ -26,7 +26,7 @@ public class ContractServiceImpl implements ContractService {
 	}
 
 	@Override
-	public PageInfo<Contract> getContracts(SearchVo searchVo) {
+	public PageInfo<Contract> getContractsBySearchVo(SearchVo searchVo) {
 
 		searchVo.initSearchVo();
 		PageHelper.startPage(searchVo.getCurrentPage(), searchVo.getPageSize());
@@ -34,4 +34,5 @@ public class ContractServiceImpl implements ContractService {
 				Optional.ofNullable(contractDao.getContractsBySearchVo(searchVo)).orElse(Collections.emptyList()));
 
 	}
+
 }

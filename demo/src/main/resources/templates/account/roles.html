@@ -1,6 +1,4 @@
-<!-- jquery.dataTables -->
-<link th:href="@{http://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css}" rel="stylesheet" >
-<!-- dataTables -->
+<!-- dataTables.bootstrap -->
 <link th:href="${'/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css'}" rel="stylesheet" />
 <!-- buttons.bootstrap -->
 <link th:href="${'/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css'}" rel="stylesheet" />
@@ -10,12 +8,12 @@
 <link th:href="${'/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css'}" rel="stylesheet" />
 <!-- responsive.bootstrap -->
 <link th:href="${'/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css'}" rel="stylesheet" />
-
-<div class="right_col" contract="main">
+<div class="right_col" role="main">
 	<div class="">
 		<div class="page-title">
 			<div class="title_left">
 				<h3>
+					Account / Roles <small>This is roles list.</small>
 				</h3>
 			</div>
 		
@@ -39,13 +37,13 @@
 				<div class="x_panel">
 					<!-- <div class="x_title">
 						<h2>
-							Default Example <small>Contract</small>
+							Default Example <small>Roles</small>
 						</h2>
 						<ul class="nav navbar-right panel_toolbox">
 							<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
 							</li>
 							<li class="dropdown"><a href="#" class="dropdown-toggle"
-								data-toggle="dropdown" contract="button" aria-expanded="false"><i
+								data-toggle="dropdown" role="button" aria-expanded="false"><i
 									class="fa fa-wrench"></i></a>
 								<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 									<a class="dropdown-item" href="#">Settings 1</a> <a
@@ -58,15 +56,15 @@
 					<div class="x_title">
 						<ul class="nav panel_toolbox" style="margin-left:0; float: left;">
 							<li>
-								<button type="button" class="btn btn-primary" id="addContractBtn"
-									data-toggle="modal" data-target="#contractAddModal">合同+</button>
+								<button type="button" class="btn btn-primary" id="addRoleBtn"
+									data-toggle="modal" data-target="#roleAddModal">新    增</button>
 							</li>
 						</ul>
 						<ul class="nav navbar-right panel_toolbox">
 							<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
 							</li>
 							<li class="dropdown"><a href="#" class="dropdown-toggle"
-								data-toggle="dropdown" contract="button" aria-expanded="false"><i
+								data-toggle="dropdown" role="button" aria-expanded="false"><i
 									class="fa fa-wrench"></i></a>
 								<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 									<a class="dropdown-item" href="#">Settings 1</a> <a
@@ -87,15 +85,9 @@
 										style="width: 100%">
 										<thead>
 											<tr>
-												<th>编号</th>
-												<th>客户名称</th>
-												<th>合同类别</th>
-												<th>销售人员</th>
-												<th>经营地址</th>
-												<th>签约日期</th>
-												<th>合同金额</th>
-												<th>回款金额</th>
-												<th>合同期限</th>
+											    <th>编号</th>
+												<th>角色名</th>
+												<th>操作</th>
 											</tr>
 										</thead>
 										<tbody></tbody>
@@ -110,8 +102,8 @@
 	</div>
 </div>
 
-<div th:replace="account/contractAdd :: contractAdd"></div>
-<div th:replace="account/contractEdit :: contractEdit"></div>
+<div th:replace="account/roleAdd :: roleAdd"></div>
+<div th:replace="account/roleEdit :: roleEdit"></div>
 
 <!-- jquery.dataTables -->
 <script th:src="${'/vendors/datatables.net/js/jquery.dataTables.min.js'}" type="text/javascript"></script>
@@ -119,7 +111,6 @@
 <script th:src="${'/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js'}" type="text/javascript"></script>
 <!-- dataTables.buttons -->
 <script th:src="${'/vendors/datatables.net-buttons/js/dataTables.buttons.min.js'}" type="text/javascript"></script>
-<!-- dataTables.buttons -->
 <script th:src="${'/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js'}" type="text/javascript"></script>
 <script th:src="${'/vendors/datatables.net-buttons/js/buttons.flash.min.js'}" type="text/javascript"></script>
 <script th:src="${'/vendors/datatables.net-buttons/js/buttons.html5.min.js'}" type="text/javascript"></script>
@@ -132,7 +123,7 @@
 <script th:src="${'/vendors/datatables.net-responsive/js/dataTables.responsive.min.js'}" type="text/javascript"></script>
 <script th:src="${'/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js'}" type="text/javascript"></script>
 <!-- scroller -->
-<script th:src="${'/vendors/datatables.net-scroller/js/dataTables.scroller.min.js'}" type="text/javascript"></script>
+<!-- <script th:src="${'/vendors/datatables.net-scroller/js/dataTables.scroller.min.js'}" type="text/javascript"></script> -->
 
 <script type="text/javascript">
 var DEFAULT_PAGE_SIZE = 5;
@@ -141,24 +132,24 @@ var DEFAULT_PAGE_SIZE = 5;
 $(document).ready(function() {
 	initTable(DEFAULT_PAGE_SIZE);
 	
-	$("#addContractBtn").bind("click", function() {
-		initContractAdd();
+	$("#addRoleBtn").bind("click", function() {
+		initRoleAdd();
 	});
 	
-	$("#contractAddBtn").bind("click", function() {
-		insertContract();
+	$("#roleAddBtn").bind("click", function() {
+		insertRole();
 	});
 	
-	$("#contractEditBtn").bind("click", function() {
-		updateContract();
+	$("#roleEditBtn").bind("click", function() {
+		updateRole();
 	});
 });
 
-function deleteContract(contractId) {
+function deleteRole(roleId) {
 	bootbox.confirm("Are you sure?", function(result) {
 		if(result) {
 			$.ajax({
-				url : "/api/contract/" + contractId,
+				url : "/api/role/" + roleId,
 				type : "delete",
 				contentType: "application/json",
 				success : function (data) {
@@ -176,17 +167,17 @@ function deleteContract(contractId) {
 	});
 }
 
-//修改 contract
-function updateContract() {
-	var contract = {};
-	contract.contractName = $("#contractNameForEditPage").val();
-	contract.contractId = $("#contractIdForEditPage").val();
+//修改 role
+function updateRole() {
+	var role = {};
+	role.roleName = $("#roleNameForEditPage").val();
+	role.roleId = $("#roleIdForEditPage").val();
 	
 	$.ajax({
-		url : "/api/contract",
+		url : "/api/role",
 		type : "put",
 		contentType: "application/json",
-		data : JSON.stringify(contract),
+		data : JSON.stringify(role),
 		success : function (data) {
 			if (data.status == 200) {
 				initTable(DEFAULT_PAGE_SIZE);
@@ -201,14 +192,14 @@ function updateContract() {
 }
 
 //初始化编辑页面
-function initEditModal(contractId) {
+function initEditModal(roleId) {
 	$.ajax({
-		url : "/api/contract/" + contractId,
+		url : "/api/role/" + roleId,
 		type : "get",
 		contentType: "application/json",
 		success : function (rs) {
-			$("#contractIdForEditPage").val(rs.contractId);
-			$("#contractNameForEditPage").val(rs.contractName);
+			$("#roleIdForEditPage").val(rs.roleId);
+			$("#roleNameForEditPage").val(rs.roleName);
 		},
 		error : function (data) {
 			layer.alert(data.responseText, {icon: 0});
@@ -216,16 +207,16 @@ function initEditModal(contractId) {
 	});
 }
 
-//添加contract
-function insertContract() {
-	var contract = {};
-	contract.contractName = $("#contractNameForAddPage").val();
+//添加role
+function insertRole() {
+	var role = {};
+	role.roleName = $("#roleNameForAddPage").val();
 	
 	$.ajax({
-		url : "/api/contract",
+		url : "/api/role",
 		type : "post",
 		contentType: "application/json",
-		data : JSON.stringify(contract),
+		data : JSON.stringify(role),
 		success : function (data) {
 			if (data.status == 200) {
 				initTable(DEFAULT_PAGE_SIZE);
@@ -239,8 +230,8 @@ function insertContract() {
 	});
 }
 
-function initContractAdd() {
-	$("#contractNameForAddPage").val("");
+function initRoleAdd() {
+	$("#roleNameForAddPage").val("");
 }
 
 function initTable(pageSize) {
@@ -271,7 +262,7 @@ function initTable(pageSize) {
 			searchVo.keyWord = data.search.value;
 
 			$.ajax({
-				url : "/api/contract",
+				url : "/api/roles",
 				type : "post",
 				contentType: "application/json",
 				data : JSON.stringify(searchVo),
@@ -297,9 +288,7 @@ function initTable(pageSize) {
 					var gearDatas = [];
 					for (var i = 0; i < rs.list.length; i++) {
 						//包装行数据
-						var rowData = new TData(rs.list[i].contractId, rs.list[i].contractName,
-								rs.list[i].category,rs.list[i].person,rs.list[i].date,
-								rs.list[i].money,rs.list[i].recovered,rs.list[i].period);
+						var rowData = new TData(rs.list[i].roleId,rs.list[i].roleName);
 						// 将行数据放到数组里
 						gearDatas.push(rowData);
 					}
@@ -314,33 +303,21 @@ function initTable(pageSize) {
 			});
 		},
 		"columns": [ //定义行数据字段
-			{data: 'contractId', name: "contract_id", sortable: true}, 
-			{data: 'contractName', name: "contract_name", sortable: true},
-			{data: 'category', name: "category", sortable: true},
-			{data: 'person', name: "person", sortable: true},
-			{data: 'date', name: "date", sortable: true},
-			{data: 'money', name: "money", sortable: true},
-			{data: 'recovered', name: "recovered", sortable: true},
-			{data: 'period', name: "period", sortable: true},
-			{data: 'operite', width: '80px', sortable: false}
+			{data: 'roleId', name: "role_id", sortable: true}, 
+			{data: 'roleName', name: "role_name", sortable: true}, 
+			{data: 'operate', width: '80px', sortable: false}
 		]
 	});
 }
 
 //行数据结构
-function TData(contractId, contractName,category,person,date,money,recovered,period,) {
-	this.contractId = contractId;
-	this.contractName = contractName;
-	this.category = category;
-	this.person = person;
-	this.date = date;
-	this.money = money;
-	this.recovered = recovered;
-	this.period = period;
-	this.操作 = function () {
-		return "<a href='#' class='btn_editcolor' data-toggle='modal' data-target='#contractEditModal' " + 
-			"onclick='initEditModal(\"" + contractId + "\")'>编辑</a>&nbsp;" + 
-			"<a href='javascript:void(0);' onclick='deleteContract(\"" + contractId + "\")' class='btn_editcolor'>删除</a>";
+function TData(roleId,roleName,password) {
+	this.roleId = roleId;
+	this.roleName = roleName;
+	this.operate = function () {
+		return "<a href='#' class='btn_editcolor' data-toggle='modal' data-target='#roleEditModal' " + 
+			"onclick='initEditModal(\"" + roleId + "\")'>编辑</a>&nbsp;" + 
+			"<a href='javascript:void(0);' onclick='deleteRole(\"" + roleId + "\")' class='btn_editcolor'>删除</a>";
 	}
 }
-</script>
+</script

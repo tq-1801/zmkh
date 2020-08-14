@@ -30,13 +30,13 @@ public class AccountController {
 	}
 
 	/**
-	 * 127.0.0.1/account/contract
+	 * 127.0.0.1/account/contracts
 	 * 
 	 * 跳转到contract页面
 	 * 
 	 * @return
 	 */
-	@RequestMapping("/contract")
+	@RequestMapping("/contracts")
 	public String contractPage() {
 		return "index";
 	}
