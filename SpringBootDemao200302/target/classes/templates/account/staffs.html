@@ -123,7 +123,7 @@ $(document).ready(function() {
 });
 
 function deleteStaff(staffId) {
-	bootbox.confirm("Are you sure?", function(result) {
+	bootbox.confirm("确定要删除吗?", function(result) {
 		if(result) {
 			$.ajax({
 				url : "/api/staff/" + staffId,
@@ -188,6 +188,10 @@ function initEditModal(staffId) {
 function insertStaff() {
 	var staff = {};
 	staff.staffName = $("#staffNameForAddPage").val();
+	staff.sex = $("#sexForAddPage").val();
+	staff.telephone = $("#telephoneForAddPage").val();
+	staff.email = $("#emailForAddPage").val();
+	staff.department = $("#departmentForAddPage").val();
 	
 	$.ajax({
 		url : "/api/staff",
@@ -209,6 +213,10 @@ function insertStaff() {
 
 function initStaffAdd() {
 	$("#staffNameForAddPage").val("");
+	$("#sexForAddPage").val("");
+	$("#telephoneForAddPage").val("");
+	$("#emailForAddPage").val("");
+	$("#departmentForAddPage").val("");
 }
 function initTable(pageSize) {
 	$('#datatable').DataTable({

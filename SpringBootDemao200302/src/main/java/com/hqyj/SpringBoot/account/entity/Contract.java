@@ -1,5 +1,9 @@
 package com.hqyj.SpringBoot.account.entity;
 
+import java.util.Date;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class Contract {
 
 	// 合同登记表
@@ -11,13 +15,15 @@ public class Contract {
 	// 销售人员
 	private String person;
 	// 签约日期
-	private String dates;
+	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+	private Date dates;
 	// 合同金额
 	private String moneyt;
 	// 回款金额
 	private String paymentv;
 	// 合同期限
-	private String period;
+	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+	private Date period;
 
 	public int getContractId() {
 		return contractId;
@@ -51,11 +57,11 @@ public class Contract {
 		this.person = person;
 	}
 
-	public String getDates() {
+	public Date getDates() {
 		return dates;
 	}
 
-	public void setDates(String dates) {
+	public void setDates(Date dates) {
 		this.dates = dates;
 	}
 
@@ -75,11 +81,11 @@ public class Contract {
 		this.paymentv = paymentv;
 	}
 
-	public String getPeriod() {
+	public Date getPeriod() {
 		return period;
 	}
 
-	public void setPeriod(String period) {
+	public void setPeriod(Date period) {
 		this.period = period;
 	}
 

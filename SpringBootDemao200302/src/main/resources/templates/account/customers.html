@@ -126,7 +126,7 @@ $(document).ready(function() {
 });
 
 function deleteCustomer(customerId) {
-	bootbox.confirm("Are you sure?", function(result) {
+	bootbox.confirm("确定要删除吗 ?", function(result) {
 		if(result) {
 			$.ajax({
 				url : "/api/customer/" + customerId,
@@ -191,6 +191,13 @@ function initEditModal(customerId) {
 function insertCustomer() {
 	var customer = {};
 	customer.customerName = $("#customerNameForAddPage").val();
+	customer.industry = $("#industryForAddPage").val();
+	customer.contacts = $("#contactsForAddPage").val();
+	customer.address = $("#addressForAddPage").val();
+	customer.telephone = $("#telephoneForAddPage").val();
+	customer.demand = $("#demandForAddPage").val();
+	customer.salesman = $("#salesmanForAddPage").val();
+	customer.results = $("#resultsForAddPage").val();
 	
 	$.ajax({
 		url : "/api/customer",

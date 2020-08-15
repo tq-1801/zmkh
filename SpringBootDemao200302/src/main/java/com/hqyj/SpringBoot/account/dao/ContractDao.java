@@ -30,7 +30,9 @@ public interface ContractDao {
 	@Options(useGeneratedKeys = true, keyProperty = "contractId", keyColumn = "contract_id")
 	void addContract(Contract contract);
 
-	@Update("update contract set contract_name = #{contractName} where contract_id = #{contractId}")
+	// 更新数据
+	@Update("update contract set contract_name = #{contractName},category = #{category},person = #{person},dates = #{dates}, "
+			+ "moneyt = #{moneyt},paymentv = #{paymentv},period = #{period} where contract_id = #{contractId}")
 	void updateContract(Contract contract);
 
 	@Delete("delete from contract where contract_id = #{contractId}")

@@ -154,7 +154,7 @@ $(document).ready(function() {
 });
 
 function deleteContract(contractId) {
-	bootbox.confirm("Are you sure?", function(result) {
+	bootbox.confirm("确定要删除吗?", function(result) {
 		if(result) {
 			$.ajax({
 				url : "/api/contract/" + contractId,
@@ -179,6 +179,12 @@ function deleteContract(contractId) {
 function updateContract() {
 	var contract = {};
 	contract.contractName = $("#contractNameForEditPage").val();
+	contract.category = $("#categoryForEditPage").val();
+	contract.person = $("#personForEditPage").val();
+	contract.dates = $("#datesForEditPage").val();
+	contract.moneyt = $("#moneytForEditPage").val();
+	contract.paymentv = $("#paymentvForEditPage").val();
+	contract.period = $("#periodForEditPage").val();
 	contract.contractId = $("#contractIdForEditPage").val();
 	
 	$.ajax({
@@ -208,6 +214,12 @@ function initEditModal(contractId) {
 		success : function (rs) {
 			$("#contractIdForEditPage").val(rs.contractId);
 			$("#contractNameForEditPage").val(rs.contractName);
+			$("#categoryForEditPage").val(rs.category);
+			$("#personForEditPage").val(rs.person);
+			$("#datesForEditPage").val(rs.dates);
+			$("#moneytForEditPage").val(rs.moneyt);
+			$("#paymentvForEditPage").val(rs.paymentv);
+			$("#periodForEditPage").val(rs.period);
 		},
 		error : function (data) {
 			layer.alert(data.responseText, {icon: 0});
@@ -221,9 +233,9 @@ function insertContract() {
 	contract.contractName = $("#contractNameForAddPage").val();
 	contract.category = $("#categoryForAddPage").val();
 	contract.person = $("#personForAddPage").val();
-	contract.date = $("#datesForAddPage").val();
-	contract.money = $("#moneytForAddPage").val();
-	contract.aymentv= $("#paymentvForAddPage").val();
+	contract.dates = $("#datesForAddPage").val();
+	contract.moneyt = $("#moneytForAddPage").val();
+	contract.paymentv= $("#paymentvForAddPage").val();
 	contract.period = $("#periodForAddPage").val();
 	
 	
@@ -346,7 +358,7 @@ function TData(contractId, contractName,category,person,dates,moneyt,paymentv,pe
 	this.person = person;
 	this.dates = dates;
 	this.moneyt = moneyt;
-	this.paymentv= aymentv;
+	this.paymentv= paymentv;
 	this.period = period;
 	this.operate = function () {
 		return "<a href='#' class='btn_editcolor'data-toggle='modal' data-target='#contractEditModal' " + 

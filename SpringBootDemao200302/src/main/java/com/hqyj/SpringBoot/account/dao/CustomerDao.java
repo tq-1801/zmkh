@@ -26,7 +26,8 @@ public interface CustomerDao {
 			+ "on customer.customer_id = userCustomer.customer_id where userCustomer.user_id = #{userId}")
 	List<Customer> getCustomersByUserId(int userId);
 
-	@Insert("insert customer(customer_name) value(#{customerName})")
+	@Insert("insert customer(customer_name,industry,contacts,address,telephone,demand,salesman,results) "
+			+ "value(#{customerName},#{industry},#{contacts},#{address},#{telephone},#{demand},#{salesman},#{results})")
 	@Options(useGeneratedKeys = true, keyProperty = "customerId", keyColumn = "customer_id")
 	void addCustomer(Customer customer);
 

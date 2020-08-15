@@ -26,7 +26,9 @@ public interface StaffDao {
 			+ "on staff.staff_id = userStaff.staff_id where userStaff.user_id = #{userId}")
 	List<Staff> getStaffsByUserId(int userId);
 
-	@Insert("insert staff(staff_name) value(#{staffName})")
+	// 增加数据
+	@Insert("insert staff(staff_name,sex,telephone,email,department)"
+			+ " value(#{staffName},#{sex},#{telephone},#{email},#{department})")
 	@Options(useGeneratedKeys = true, keyProperty = "staffId", keyColumn = "staff_id")
 	void addStaff(Staff staff);
 
