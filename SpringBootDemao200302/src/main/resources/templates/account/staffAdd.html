@@ -1,11 +1,11 @@
 <!-- 模态框（Modal） -->
-<div th:fragment="contractAdd" class="modal fade" id="contractAddModal" tabindex="-1"
-	contract="dialog" aria-labelledby="contractAddLabel" aria-hidden="true">
+<div th:fragment="staffAdd" class="modal fade" id="staffAddModal" tabindex="-1"
+	staff="dialog" aria-labelledby="staffAddLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h4 class="modal-title" id="contractAddLabel"
-					style="font-size: 18px; font-weight: 500;">新增合同</h4>
+				<h4 class="modal-title" id="staffAddLabel"
+					style="font-size: 18px; font-weight: 500;">新增员工</h4>
 				<button type="button" class="close" data-dismiss="modal"
 					aria-hidden="true">&times;</button>
 			</div>
@@ -13,48 +13,35 @@
 			<div class="modal-body">
 				<form class="form-horizontal">
 					<div class="form-group row">
-						<label class="control-label col-md-0">合同名称</label>
+						<label class="control-label col-md-0">姓名</label>
 						<div class="col-md-4">
-							<input id="contractNameForAddPage" name="contractName" class="form-control" 
+							<input id="staffNameForAddPage" name="staffName" class="form-control" 
 								type="text" placeholder="">
 						</div>
-						<label class="control-label col-md-0">合同类别</label>
+						<label class="control-label col-md-0">性别</label>
 						<div class="col-md-4">
 							<input id="categoryForAddPage" name="category" class="form-control" 
 								type="text" placeholder="">
 						</div>
 					</div>
 					<div class="form-group row">
-						<label class="control-label col-md-0">销售人员</label>
+						<label class="control-label col-md-0">部门</label>
 						<div class="col-md-4">
 							<input id="personForAddPage" name="person" class="form-control" 
 								type="text" placeholder="">
 						</div>
-						<label class="control-label col-md-0">签约日期</label>
+						<label class="control-label col-md-0">邮箱</label>
 						<div class="col-md-4">
-							<input id="datesForAddPage" name="dates" class="form-control" 
+							<input id="dateForAddPage" name="date" class="form-control" 
 								type="text" placeholder="">
 						</div>
 					</div>
 					<div class="form-group row">
-						<label class="control-label col-md-0">合同金额</label>
+						<label class="control-label col-md-0">联系方式</label>
 						<div class="col-md-4">
-							<input id="moneytForAddPage" name="moneyt" class="form-control" 
+							<input id="personForAddPage" name="person" class="form-control" 
 								type="text" placeholder="">
 						</div>
-						<label class="control-label col-md-0">回款金额</label>
-						<div class="col-md-4">
-							<input id="paymentvForAddPage" name="paymentv" class="form-control" 
-								type="text" placeholder="">
-						</div>
-					</div>
-					<div class="form-group row">
-						<label class="control-label col-md-0">合同期限</label>
-						<div class="col-md-4">
-							<input id="periodForAddPage" name="period" class="form-control" 
-								type="text" placeholder="">
-						</div>
-						
 					</div>
 				</form>
 			</div>
@@ -63,7 +50,7 @@
 				<a class="btn btn-secondary" href="#" data-dismiss="modal">
 					<i class="fa fa-fw fa-lg fa-times-circle"></i>取消
 				</a>
-				<button id="contractAddBtn" data-dismiss="modal" 
+				<button id="staffAddBtn" data-dismiss="modal" 
 					class="btn btn-primary" type="button">
 					<i class="fa fa-fw fa-lg fa-check-circle"></i>确定
 				</button>

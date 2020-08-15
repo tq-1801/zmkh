@@ -1,0 +1,42 @@
+<!-- 模态框（Modal） -->
+<div th:fragment="staffEdit" class="modal fade" id="staffEditModal" tabindex="-1"
+	staff="dialog" aria-labelledby="staffEditLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title" id="staffEditLabel"
+					style="font-size: 18px; font-weight: 500;">Staff Edit</h4>
+				<button type="button" class="close" data-dismiss="modal"
+					aria-hidden="true">&times;</button>
+			</div>
+			<div class="modal-body">
+				<form class="form-horizontal">
+					<div class="form-group row">
+						<label class="control-label col-md-3">staff Id</label>
+						<div class="col-md-8">
+							<input id="staffIdForEditPage" name="staffId" class="form-control" 
+								type="text" placeholder="Enter staff id" readonly/>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="control-label col-md-3">staff Name</label>
+						<div class="col-md-8">
+							<input id="staffNameForEditPage" name="staffName" class="form-control" 
+								type="text" placeholder="Enter staff name" readonly>
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<!-- data-dismiss="modal"关闭模态框 -->
+				<a class="btn btn-secondary" href="#" data-dismiss="modal">
+					<i class="fa fa-fw fa-lg fa-times-circle"></i>Cancel
+				</a>
+				<button id="staffEditBtn" data-dismiss="modal" 
+					class="btn btn-primary" type="button">
+					<i class="fa fa-fw fa-lg fa-check-circle"></i>Submit
+				</button>
+			</div>
+		</div>
+	</div>
+</div>

@@ -12,6 +12,7 @@ public class SpringBootDemao200302Application extends SpringBootServletInitializ
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
 		return builder.sources(SpringBootDemao200302Application.class);
 	}
+
 	public static void main(String[] args) {
 		SpringApplication.run(SpringBootDemao200302Application.class, args);
 	}

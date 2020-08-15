@@ -219,6 +219,13 @@ function initEditModal(contractId) {
 function insertContract() {
 	var contract = {};
 	contract.contractName = $("#contractNameForAddPage").val();
+	contract.category = $("#categoryForAddPage").val();
+	contract.person = $("#personForAddPage").val();
+	contract.date = $("#datesForAddPage").val();
+	contract.money = $("#moneytForAddPage").val();
+	contract.aymentv= $("#paymentvForAddPage").val();
+	contract.period = $("#periodForAddPage").val();
+	
 	
 	$.ajax({
 		url : "/api/contract",
@@ -240,6 +247,12 @@ function insertContract() {
 
 function initContractAdd() {
 	$("#contractNameForAddPage").val("");
+	$("#categoryForAddPage").val("");
+	$("#personForAddPage").val("");
+	$("#datesForAddPage").val("");
+	$("#moneytForAddPage").val("");
+	$("#paymentvForAddPage").val("");
+	$("#periodForAddPage").val("");
 }
 function initTable(pageSize) {
 	$('#datatable').DataTable({
@@ -296,8 +309,8 @@ function initTable(pageSize) {
 					for (var i = 0; i < rs.list.length; i++) {
 						//包装行数据
 						var rowData = new TData(rs.list[i].contractId, rs.list[i].contractName,
-								rs.list[i].category,rs.list[i].person,rs.list[i].date,
-								rs.list[i].money,rs.list[i].recovered,rs.list[i].period);
+								rs.list[i].category,rs.list[i].person,rs.list[i].dates,
+								rs.list[i].moneyt,rs.list[i].paymentv,rs.list[i].period);
 						// 将行数据放到数组里
 						gearDatas.push(rowData);
 					}
@@ -316,9 +329,9 @@ function initTable(pageSize) {
 			{data: 'contractName', name: "contract_name", sortable: true},
 			{data: 'category', name: "category", sortable: true},
 			{data: 'person', name: "person", sortable: true},
-			{data: 'date', name: "date", sortable: true},
-			{data: 'money', name: "money", sortable: true},
-			{data: 'recovered', name: "recovered", sortable: true},
+			{data: 'dates', name: "dates", sortable: true},
+			{data: 'moneyt', name: "moneyt", sortable: true},
+			{data: 'paymentv', name: "paymentv", sortable: true},
 			{data: 'period', name: "period", sortable: true},
 			{data: 'operate', width: '80px', sortable: false}
 		]
@@ -326,17 +339,17 @@ function initTable(pageSize) {
 }
 
 //行数据结构
-function TData(contractId, contractName,category,person,date,money,recovered,period,) {
+function TData(contractId, contractName,category,person,dates,moneyt,paymentv,period,) {
 	this.contractId = contractId;
 	this.contractName = contractName;
 	this.category = category;
 	this.person = person;
-	this.date = date;
-	this.money = money;
-	this.recovered = recovered;
+	this.dates = dates;
+	this.moneyt = moneyt;
+	this.paymentv= aymentv;
 	this.period = period;
 	this.operate = function () {
-		return "<a href='#' class='btn_editcolor' " + 
+		return "<a href='#' class='btn_editcolor'data-toggle='modal' data-target='#contractEditModal' " + 
 			"onclick='initEditModal(\"" + contractId + "\")'>编辑</a>&nbsp;" + 
 			"<a href='javascript:void(0);' onclick='deleteContract(\"" + contractId + "\")' class='btn_editcolor'>删除</a>";
 	}

@@ -11,11 +11,11 @@ public class Contract {
 	// 销售人员
 	private String person;
 	// 签约日期
-	private String date;
+	private String dates;
 	// 合同金额
-	private String money;
+	private String moneyt;
 	// 回款金额
-	private String recovered;
+	private String paymentv;
 	// 合同期限
 	private String period;
 
@@ -51,28 +51,28 @@ public class Contract {
 		this.person = person;
 	}
 
-	public String getDate() {
-		return date;
+	public String getDates() {
+		return dates;
 	}
 
-	public void setDate(String date) {
-		this.date = date;
+	public void setDates(String dates) {
+		this.dates = dates;
 	}
 
-	public String getMoney() {
-		return money;
+	public String getMoneyt() {
+		return moneyt;
 	}
 
-	public void setMoney(String money) {
-		this.money = money;
+	public void setMoneyt(String moneyt) {
+		this.moneyt = moneyt;
 	}
 
-	public String getRecovered() {
-		return recovered;
+	public String getPaymentv() {
+		return paymentv;
 	}
 
-	public void setRecovered(String recovered) {
-		this.recovered = recovered;
+	public void setPaymentv(String paymentv) {
+		this.paymentv = paymentv;
 	}
 
 	public String getPeriod() {

@@ -18,7 +18,7 @@ public interface ContractDao {
 	@Select("select * from contract")
 	List<Contract> getContracts();
 
-	@Insert("insert into contract (contract_name) values (#{contractName})")
+	@Insert("insert into contract (contract_name)  values (#{contractName})")
 	@Options(useGeneratedKeys = true, keyColumn = "contract_id", keyProperty = "contractId")
 	void insertContract(Contract contract);
 
@@ -26,7 +26,7 @@ public interface ContractDao {
 			+ "on contract.contract_id = userContract.contract_id where userContract.user_id = #{userId}")
 	List<Contract> getContractsByUserId(int userId);
 
-	@Insert("insert contract(contract_name) value(#{contractName})")
+	@Insert("insert into contract(contract_name, category, person, dates, moneyt, paymentv, period)value(#{contractName}, #{category}, #{person}, #{dates}, #{moneyt}, #{paymentv}, #{period})")
 	@Options(useGeneratedKeys = true, keyProperty = "contractId", keyColumn = "contract_id")
 	void addContract(Contract contract);
 

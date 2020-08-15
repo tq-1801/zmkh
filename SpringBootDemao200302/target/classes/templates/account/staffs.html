@@ -11,7 +11,7 @@
 <!-- responsive.bootstrap -->
 <link th:href="${'/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css'}" rel="stylesheet" />
 
-<div class="right_col" customer="main">
+<div class="right_col" staff="main">
 	<div class="">
 		<div class="page-title">
 			<div class="title_left">
@@ -29,15 +29,15 @@
 					<div class="x_title">
 						<ul class="nav panel_toolbox" style="margin-left:0; float: left;">
 							<li>
-								<button type="button" class="btn btn-primary" id="addCustomerBtn"
-									data-toggle="modal" data-target="#customerAddModal">客户  +</button>
+								<button type="button" class="btn btn-primary" id="addStaffBtn"
+									data-toggle="modal" data-target="#staffAddModal">员工 +</button>
 							</li>
 						</ul>
 						<ul class="nav navbar-right panel_toolbox">
 							<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
 							</li>
 							<li class="dropdown"><a href="#" class="dropdown-toggle"
-								data-toggle="dropdown" customer="button" aria-expanded="false"><i
+								data-toggle="dropdown" staff="button" aria-expanded="false"><i
 									class="fa fa-wrench"></i></a>
 								<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 									<a class="dropdown-item" href="#">Settings 1</a> <a
@@ -59,14 +59,11 @@
 										<thead>
 											<tr>
 												<th>编号</th>
-												<th>名称</th>
-												<th>经营范围</th>
-												<th>联系人</th>
-												<th>地址</th>
-												<th>联系电话</th>
-												<th>客户需求</th>
-												<th>销售负责人</th>
-												<th>跟踪结果</th>
+												<th>员工姓名</th>
+												<th>性别</th>
+												<th>联系方式</th>
+												<th>邮箱</th>
+												<th>部门</th>
 												<th>操作</th>
 											</tr>
 										</thead>
@@ -81,8 +78,8 @@
 		</div>
 	</div>
 </div>
-<div th:replace="account/customerAdd :: customerAdd"></div>
-<div th:replace="account/customerEdit :: customerEdit"></div>
+<div th:replace="account/staffAdd :: staffAdd"></div>
+<div th:replace="account/staffEdit :: staffEdit"></div>
 
 <!-- jquery.dataTables -->
 <script th:src="${'/vendors/datatables.net/js/jquery.dataTables.min.js'}" type="text/javascript"></script>
@@ -112,24 +109,24 @@ var DEFAULT_PAGE_SIZE = 5;
 $(document).ready(function() {
 	initTable(DEFAULT_PAGE_SIZE);
 	
-	$("#addCustomerBtn").bind("click", function() {
-		initCustomerAdd();
+	$("#addStaffBtn").bind("click", function() {
+		initStaffAdd();
 	});
 	
-	$("#customerAddBtn").bind("click", function() {
-		insertCustomer();
+	$("#staffAddBtn").bind("click", function() {
+		insertStaff();
 	});
 	
-	$("#customerEditBtn").bind("click", function() {
-		updateCustomer();
+	$("#staffEditBtn").bind("click", function() {
+		updateStaff();
 	});
 });
 
-function deleteCustomer(customerId) {
+function deleteStaff(staffId) {
 	bootbox.confirm("Are you sure?", function(result) {
 		if(result) {
 			$.ajax({
-				url : "/api/customer/" + customerId,
+				url : "/api/staff/" + staffId,
 				type : "delete",
 				contentType: "application/json",
 				success : function (data) {
@@ -147,17 +144,17 @@ function deleteCustomer(customerId) {
 	});
 }
 
-//修改 customer
-function updateCustomer() {
-	var customer = {};
-	customer.customerName = $("#customerNameForEditPage").val();
-	customer.customerId = $("#customerIdForEditPage").val();
+//修改 staff
+function updateStaff() {
+	var staff = {};
+	staff.staffName = $("#staffNameForEditPage").val();
+	staff.staffId = $("#staffIdForEditPage").val();
 	
 	$.ajax({
-		url : "/api/customer",
+		url : "/api/staff",
 		type : "put",
 		contentType: "application/json",
-		data : JSON.stringify(customer),
+		data : JSON.stringify(staff),
 		success : function (data) {
 			if (data.status == 200) {
 				initTable(DEFAULT_PAGE_SIZE);
@@ -172,14 +169,14 @@ function updateCustomer() {
 }
 
 //初始化编辑页面
-function initEditModal(customerId) {
+function initEditModal(staffId) {
 	$.ajax({
-		url : "/api/customer/" + customerId,
+		url : "/api/staff/" + staffId,
 		type : "get",
 		contentType: "application/json",
 		success : function (rs) {
-			$("#customerIdForEditPage").val(rs.customerId);
-			$("#customerNameForEditPage").val(rs.customerName);
+			$("#staffIdForEditPage").val(rs.staffId);
+			$("#staffNameForEditPage").val(rs.staffName);
 		},
 		error : function (data) {
 			layer.alert(data.responseText, {icon: 0});
@@ -187,16 +184,16 @@ function initEditModal(customerId) {
 	});
 }
 
-//添加customer
-function insertCustomer() {
-	var customer = {};
-	customer.customerName = $("#customerNameForAddPage").val();
+//添加staff
+function insertStaff() {
+	var staff = {};
+	staff.staffName = $("#staffNameForAddPage").val();
 	
 	$.ajax({
-		url : "/api/customer",
+		url : "/api/staff",
 		type : "post",
 		contentType: "application/json",
-		data : JSON.stringify(customer),
+		data : JSON.stringify(staff),
 		success : function (data) {
 			if (data.status == 200) {
 				initTable(DEFAULT_PAGE_SIZE);
@@ -210,8 +207,8 @@ function insertCustomer() {
 	});
 }
 
-function initCustomerAdd() {
-	$("#customerNameForAddPage").val("");
+function initStaffAdd() {
+	$("#staffNameForAddPage").val("");
 }
 function initTable(pageSize) {
 	$('#datatable').DataTable({
@@ -231,7 +228,7 @@ function initTable(pageSize) {
 			var columIndex = data.order[0].column;
 			var sort = data.order[0].dir;
 			var orderBy = data.columns[columIndex].name;
-			pageSize = data.length == undefined ? pageSize : data.length;
+			pageSize = data.length == undefined  ? pageSize : data.length;
 			
 			var searchVo = {};
 			searchVo.currentPage = (data.start / pageSize) + 1;
@@ -241,7 +238,7 @@ function initTable(pageSize) {
 			searchVo.keyWord = data.search.value;
 
 			$.ajax({
-				url : "/api/customers",
+				url : "/api/staffs",
 				type : "post",
 				contentType: "application/json",
 				data : JSON.stringify(searchVo),
@@ -267,9 +264,9 @@ function initTable(pageSize) {
 					var gearDatas = [];
 					for (var i = 0; i < rs.list.length; i++) {
 						//包装行数据
-						var rowData = new TData(rs.list[i].customerId, rs.list[i].customerName, 
-								rs.list[i].industry, rs.list[i].contacts,rs.list[i].address,
-								rs.list[i].telephone,rs.list[i].demand,rs.list[i].salesman,rs.list[i].results);
+						var rowData = new TData(rs.list[i].staffId, rs.list[i].staffName,
+								rs.list[i].sex,rs.list[i].telephone,rs.list[i].email,
+								rs.list[i].department);
 						// 将行数据放到数组里
 						gearDatas.push(rowData);
 					}
@@ -284,36 +281,29 @@ function initTable(pageSize) {
 			});
 		},
 		"columns": [ //定义行数据字段
-			{data: 'customerId', name: "customer_id", sortable: true}, 
-			{data: 'customerName', name: "customer_name", sortable: true}, 
-			{data: 'industry', name: "industry", sortable: true}, 
-			{data: 'contacts', name: "contacts", sortable: true},
-			{data: 'address', name: "address", sortable: true},
+			{data: 'staffId', name: "staff_id", sortable: true}, 
+			{data: 'staffName', name: "staff_name", sortable: true},
+			{data: 'sex', name: "sex", sortable: true},
 			{data: 'telephone', name: "telephone", sortable: true},
-			{data: 'demand', name: "demand", sortable: true},
-			{data: 'salesman', name: "salesman", sortable: true},
-			{data: 'results', name: "results", sortable: true},
+			{data: 'email', name: "email", sortable: true},
+			{data: 'department', name: "department", sortable: true},
 			{data: 'operate', width: '80px', sortable: false}
 		]
 	});
 }
 
 //行数据结构
-function TData(customerId, customerName, industry, contacts,address,telephone,demand,salesman,results) {
-	this.customerId = customerId;
-	this.customerName = customerName;
-	this.industry = industry;
-	this.contacts = contacts;
-	this.address = address;
+function TData(staffId, staffName,sex,telephone,email,department) {
+	this.staffId = staffId;
+	this.staffName = staffName;
+	this.sex = sex;
 	this.telephone = telephone;
-	this.demand = demand;
-	this.salesman = salesman;
-	this.results = results;
-	this.operate= function () {
-		return "<a href='#' class='btn_editcolor' data-toggle='modal' data-target='#customerEditModal' " + 
-			"onclick='initEditModal(\"" + customerId + "\")'>编辑</a>&nbsp;" + 
-			"<a href='javascript:void(0);' onclick='deleteCustomer(\"" + customerId + "\")' class='btn_editcolor'>删除</a>";
+	this.email = email;
+	this.department = department;
+	this.operate = function () {
+		return "<a href='#' class='btn_editcolor'data-toggle='modal' data-target='#staffEditModal' " + 
+			"onclick='initEditModal(\"" + staffId + "\")'>编辑</a>&nbsp;" + 
+			"<a href='javascript:void(0);' onclick='deleteStaff(\"" + staffId + "\")' class='btn_editcolor'>删除</a>";
 	}
 }
-
 </script>

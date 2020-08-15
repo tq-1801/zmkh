@@ -82,7 +82,7 @@ public class AccountController {
 	}
 
 	/**
-	 * http://127.0.0.1/account/contracts 跳转到roles页面
+	 * 127.0.0.1/account/contracts 跳转到roles页面
 	 */
 	@RequestMapping("/contracts")
 	public String contractsPage() {
@@ -100,7 +100,17 @@ public class AccountController {
 	}
 
 	/**
-	 * http://127.0.0.1/account/resources 跳转到resource页面
+	 * 127.0.0.1/account/staffs
+	 * 
+	 * 跳转到staffs页面
+	 */
+	@RequestMapping("/staffs")
+	public String staffPage() {
+		return "index";
+	}
+
+	/**
+	 * 127.0.0.1/account/resources 跳转到resource页面
 	 */
 	@RequestMapping("/resources")
 	public String resourcesPage() {
