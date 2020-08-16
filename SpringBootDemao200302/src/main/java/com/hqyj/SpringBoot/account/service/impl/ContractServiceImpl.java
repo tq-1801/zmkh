@@ -34,7 +34,7 @@ public class ContractServiceImpl implements ContractService {
 	public Result<Contract> editContract(Contract contract) {
 		Contract contractTemp = contractDao.getContractByContractName(contract.getContractName());
 		if (contractTemp != null && contractTemp.getContractId() != contract.getContractId()) {
-			return new Result<Contract>(ResultStatus.FAILED.status, "Contract name is repeat.");
+			return new Result<Contract>(ResultStatus.FAILED.status, "用户名重复.");
 		}
 
 		if (contract.getContractId() > 0) {
@@ -43,7 +43,7 @@ public class ContractServiceImpl implements ContractService {
 			contractDao.addContract(contract);
 		}
 
-		return new Result<Contract>(ResultStatus.SUCCESS.status, "success", contract);
+		return new Result<Contract>(ResultStatus.SUCCESS.status, "成功", contract);
 	}
 
 	@Override

@@ -31,8 +31,8 @@ public interface ContractDao {
 	void addContract(Contract contract);
 
 	// 更新数据
-	@Update("update contract set contract_name = #{contractName},category = #{category},person = #{person},dates = #{dates}, "
-			+ "moneyt = #{moneyt},paymentv = #{paymentv},period = #{period} where contract_id = #{contractId}")
+	@Update("update contract set contract_name = #{contractName}, category = #{category}, person = #{person}, dates = #{dates}, "
+			+ " moneyt = #{moneyt}, paymentv = #{paymentv}, period = #{period} where contract_id = #{contractId}")
 	void updateContract(Contract contract);
 
 	@Delete("delete from contract where contract_id = #{contractId}")

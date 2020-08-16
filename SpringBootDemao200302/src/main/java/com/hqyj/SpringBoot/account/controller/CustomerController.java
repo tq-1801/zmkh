@@ -2,6 +2,8 @@ package com.hqyj.SpringBoot.account.controller;
 
 import java.util.List;
 
+import org.apache.shiro.authz.annotation.Logical;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -53,6 +55,7 @@ public class CustomerController {
 	}
 
 	@DeleteMapping("/customer/{customerId}")
+	@RequiresPermissions(value = { "/api/customer" }, logical = Logical.OR)
 	public Result<Customer> deletCustomer(@PathVariable int customerId) {
 		return customerService.deleteCustomer(customerId);
 	}

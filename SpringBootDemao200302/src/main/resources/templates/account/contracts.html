@@ -185,7 +185,6 @@ function updateContract() {
 	contract.moneyt = $("#moneytForEditPage").val();
 	contract.paymentv = $("#paymentvForEditPage").val();
 	contract.period = $("#periodForEditPage").val();
-	contract.contractId = $("#contractIdForEditPage").val();
 	
 	$.ajax({
 		url : "/api/contract",
@@ -212,7 +211,6 @@ function initEditModal(contractId) {
 		type : "get",
 		contentType: "application/json",
 		success : function (rs) {
-			$("#contractIdForEditPage").val(rs.contractId);
 			$("#contractNameForEditPage").val(rs.contractName);
 			$("#categoryForEditPage").val(rs.category);
 			$("#personForEditPage").val(rs.person);

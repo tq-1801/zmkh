@@ -31,7 +31,8 @@ public interface CustomerDao {
 	@Options(useGeneratedKeys = true, keyProperty = "customerId", keyColumn = "customer_id")
 	void addCustomer(Customer customer);
 
-	@Update("update customer set customer_name = #{customerName} where customer_id = #{customerId}")
+	@Update("update customer set customer_name = #{customerName},industry = #{industry},contacts = #{contacts},industry = #{industry},address = #{address},"
+			+ "telephone = #{telephone},demand = #{demand},salesman = #{salesman},results = #{results} where customer_id = #{customerId}")
 	void updateCustomer(Customer customer);
 
 	@Delete("delete from customer where customer_id = #{customerId}")

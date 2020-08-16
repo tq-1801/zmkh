@@ -146,7 +146,7 @@ $(document).ready(function() {
 });
 
 function deleteResource(resourceId) {
-	bootbox.confirm("Are you sure?", function(result) {
+	bootbox.confirm("确定要删除吗?", function(result) {
 		if(result) {
 			$.ajax({
 				url : "/api/resource/" + resourceId,

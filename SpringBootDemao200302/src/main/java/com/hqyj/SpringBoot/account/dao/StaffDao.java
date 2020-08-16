@@ -32,7 +32,7 @@ public interface StaffDao {
 	@Options(useGeneratedKeys = true, keyProperty = "staffId", keyColumn = "staff_id")
 	void addStaff(Staff staff);
 
-	@Update("update staff set staff_name = #{staffName} where staff_id = #{staffId}")
+	@Update("update staff set staff_name = #{staffName},sex = #{sex},telephone = #{telephone},email = #{email},department = #{department} where staff_id = #{staffId}")
 	void updateStaff(Staff staff);
 
 	@Delete("delete from staff where staff_id = #{staffId}")

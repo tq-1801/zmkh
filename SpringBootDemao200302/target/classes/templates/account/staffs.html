@@ -148,6 +148,10 @@ function deleteStaff(staffId) {
 function updateStaff() {
 	var staff = {};
 	staff.staffName = $("#staffNameForEditPage").val();
+	staff.sex = $("#sexForEditPage").val();
+	staff.telephone = $("#telephoneForEditPage").val();
+	staff.email = $("#emailForEditPage").val();
+	staff.department = $("#departmentForEditPage").val();
 	staff.staffId = $("#staffIdForEditPage").val();
 	
 	$.ajax({
@@ -177,6 +181,10 @@ function initEditModal(staffId) {
 		success : function (rs) {
 			$("#staffIdForEditPage").val(rs.staffId);
 			$("#staffNameForEditPage").val(rs.staffName);
+			$("#sexForEditPage").val(rs.sex);
+			$("#telephoneForEditPage").val(rs.telephone);
+			$("#emailForEditPage").val(rs.email);
+			$("#departmentForEditPage").val(rs.department);
 		},
 		error : function (data) {
 			layer.alert(data.responseText, {icon: 0});

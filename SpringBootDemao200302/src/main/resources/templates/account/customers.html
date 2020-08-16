@@ -152,6 +152,13 @@ function updateCustomer() {
 	var customer = {};
 	customer.customerName = $("#customerNameForEditPage").val();
 	customer.customerId = $("#customerIdForEditPage").val();
+	customer.industry = $("#industryForEditPage").val();
+	customer.contacts = $("#contactsForEditPage").val();
+	customer.address = $("#addressForEditPage").val();
+	customer.telephone = $("#telephoneForEditPage").val();
+	customer.demand = $("#demandForEditPage").val();
+	customer.salesman = $("#salesmanForEditPage").val();
+	customer.results = $("#resultsForEditPage").val();
 	
 	$.ajax({
 		url : "/api/customer",
@@ -180,6 +187,14 @@ function initEditModal(customerId) {
 		success : function (rs) {
 			$("#customerIdForEditPage").val(rs.customerId);
 			$("#customerNameForEditPage").val(rs.customerName);
+			$("#industryForEditPage").val(rs.industry);
+			$("#contactsForEditPage").val(rs.contacts);
+			$("#addressForEditPage").val(rs.address);
+			$("#telephoneForEditPage").val(rs.telephone);
+			$("#demandForEditPage").val(rs.demand);
+			$("#salesmanForEditPage").val(rs.salesman);
+			$("#resultsForEditPage").val(rs.results);
+			
 		},
 		error : function (data) {
 			layer.alert(data.responseText, {icon: 0});

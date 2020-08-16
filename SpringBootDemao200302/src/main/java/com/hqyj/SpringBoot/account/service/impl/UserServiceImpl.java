@@ -7,8 +7,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
-
-
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.session.Session;
@@ -33,6 +31,7 @@ import com.hqyj.SpringBoot.common.vo.SearchVo;
 import com.hqyj.SpringBoot.config.ResourceConfigBean;
 import com.hqyj.SpringBoot.utils.FileUtil;
 import com.hqyj.SpringBoot.utils.MD5Util;
+
 @Service
 public class UserServiceImpl implements UserService {
 	private final static Logger LOGGER = LoggerFactory.getLogger(UserServiceImpl.class);
@@ -47,6 +46,7 @@ public class UserServiceImpl implements UserService {
 	public User getUserByUserName(String userName) {
 		return userDao.getUserByUserName(userName);
 	}
+
 	@Override
 	public Result<User> login(User user) {
 //		User userTemp = userDao.getUserByUserName(user.getUserName());
@@ -56,18 +56,18 @@ public class UserServiceImpl implements UserService {
 
 		try {
 			Subject subject = SecurityUtils.getSubject();
-			
-			UsernamePasswordToken usernamePasswordToken = 
-					new UsernamePasswordToken(user.getUserName(), MD5Util.getMD5(user.getPassword()));
+
+			UsernamePasswordToken usernamePasswordToken = new UsernamePasswordToken(user.getUserName(),
+					MD5Util.getMD5(user.getPassword()));
 			usernamePasswordToken.setRememberMe(user.getRememberMe());
-			
+
 			subject.login(usernamePasswordToken);
 			subject.checkRoles();
-			
+
 			Session session = subject.getSession();
 			User userTemp = (User) subject.getPrincipal();
 			session.setAttribute("userId", userTemp.getUserId());
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new Result<User>(ResultStatus.FAILED.status, "User name or password error.");
@@ -75,33 +75,32 @@ public class UserServiceImpl implements UserService {
 		return new Result<User>(ResultStatus.SUCCESS.status, "Login success.", user);
 	}
 
-
 	@Override
 	public void logout() {
 		Subject subject = SecurityUtils.getSubject();
 		subject.logout();
-		
+
 	}
+
 	@Override
 	public PageInfo<User> getUsersBySearchVo(SearchVo searchVo) {
 		searchVo.initSearchVo();
 		PageHelper.startPage(searchVo.getCurrentPage(), searchVo.getPageSize());
 		return new PageInfo<User>(
-				Optional.ofNullable(userDao.getUsersBySearchVo(searchVo))
-				.orElse(Collections.emptyList()));
-	
+				Optional.ofNullable(userDao.getUsersBySearchVo(searchVo)).orElse(Collections.emptyList()));
+
 	}
-	
+
 	@Override
 	public User getUserByUserId(int userId) {
 		return userDao.getUserByUserId(userId);
 	}
-	
+
 	@Override
 	public Result<Object> deleteUser(int userId) {
 		userDao.deleteUser(userId);
 		userRoleDao.deletUserRoleByUserId(userId);
-		return new Result<Object>(ResultStatus.SUCCESS.status, "Delete success.");
+		return new Result<Object>(ResultStatus.SUCCESS.status, "删除成功.");
 	}
 
 	@Override
@@ -111,13 +110,13 @@ public class UserServiceImpl implements UserService {
 		if (userTemp != null && userTemp.getUserId() != user.getUserId()) {
 			return new Result<User>(ResultStatus.FAILED.status, "User name is repeat.");
 		}
-		
+
 		user.setPassword(MD5Util.getMD5(user.getPassword()));
 		user.setCreateDate(new Date());
-		
-		//管理员编辑用户信息时，只修改用户角色
+
+		// 管理员编辑用户信息时，只修改用户角色
 		if (user.getUserId() > 0) {
-			//userDao.updateUser(user);
+			// userDao.updateUser(user);
 			userRoleDao.deletUserRoleByUserId(user.getUserId());
 		} else {
 			userDao.insertUser(user);
@@ -132,6 +131,7 @@ public class UserServiceImpl implements UserService {
 
 		return new Result<User>(ResultStatus.SUCCESS.status, "Edit success.", user);
 	}
+
 	@Override
 	public Result<String> uploadUserImage(MultipartFile userImage) {
 
@@ -152,10 +152,10 @@ public class UserServiceImpl implements UserService {
 		} catch (IllegalStateException | IOException e) {
 			e.printStackTrace();
 			LOGGER.debug(e.getMessage());
-			return new Result<>(ResultStatus.FAILED.status, "File upload error.");
+			return new Result<>(ResultStatus.FAILED.status, "文件上传失败.");
 		}
 
-		return new Result<>(ResultStatus.SUCCESS.status, "File upload success.", relatedPath);
+		return new Result<>(ResultStatus.SUCCESS.status, "文件上传成功.", relatedPath);
 	}
 
 	@Override
@@ -163,11 +163,11 @@ public class UserServiceImpl implements UserService {
 	public Result<User> updateUserProfile(User user) {
 		User userTemp = getUserByUserName(user.getUserName());
 		if (userTemp != null && userTemp.getUserId() != user.getUserId()) {
-			return new Result<User>(ResultStatus.FAILED.status, "User name is repeat.");
+			return new Result<User>(ResultStatus.FAILED.status, "用户名重复.");
 		}
 
 		userDao.updateUser(user);
 
-		return new Result<User>(ResultStatus.SUCCESS.status, "Edit success.", user);
+		return new Result<User>(ResultStatus.SUCCESS.status, "编辑成功.", user);
 	}
 }
