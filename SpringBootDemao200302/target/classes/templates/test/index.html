@@ -2,16 +2,10 @@
 <div class="right_col" role="main">
 	
 	<div class="row" style="display: inline-block;">
-		Hello world! This is test module index.
-		<h3>file downlod</h3>
-		<a href="/test/download?fileName=QQ截图20200609111527.png">download file</a>
-		<br>
-		<p>==================================================================</p>
-		
-		<h3>file upload</h3>
+		<h3>上传文件</h3>
 		<p th:text="${message}"></p>
 		
-		<p>上传文件，使用multipart/form-data类型</p>
+		<p>multipart/form-data类型</p>
 		<form action="/test/file" method="post" enctype="multipart/form-data">
 			<input type="file" name="file">
 			<button type="submit">上传</button>
@@ -25,6 +19,15 @@
 			<button type="submit">上传</button>
 		</form>
 		<p>==================================================================</p>
+		<h3>下载文件</h3>
+		<form action="/test/files" method="post" enctype="multipart/form-data">
+		<a href="/test/download">download file</a>
+		<input type="file" name="files">
+		<input type="file" name="files">
+		<br>
+		<p>==================================================================</p>
+		
+		
 		
 		<h3>th:text</h3>
 		<h1 th:text="${thymeleafTitle}">this is thymeleaf title</h1>

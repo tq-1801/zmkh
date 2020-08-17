@@ -1,63 +1,100 @@
 <!-- 模态框（Modal） -->
-<div th:fragment="contractEdit" class="modal fade" id="contractEditModal" tabindex="-1"
+<div th:fragment="contractEdit" class="modal fade text-center" id="contractEditModal" tabindex="-1"
 	contract="dialog" aria-labelledby="contractEditLabel" aria-hidden="true">
+	
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
 				<h4 class="modal-title" id="contractEditLabel"
-					style="font-size: 18px; font-weight: 500;">编辑合同</h4>
+					style="font-size: 18px; font-weight: 500;">合同信息</h4>
 				<button type="button" class="close" data-dismiss="modal"
 					aria-hidden="true">&times;</button>
 			</div>
 			<div class="modal-body">
 					<div class="form-group row">
+						<label class="control-label col-md-0">编号</label>
+						<div class="col-md-4">
+							<input id="contractIdForEditPage" name="contractId" class="form-control" 
+								type="text" placeholder="" readonly/>
+						</div>
 						<label class="control-label col-md-0">客户名称</label>
 						<div class="col-md-4">
 							<input id="contractNameForEditPage" name="contractName" class="form-control" 
-								type="text" placeholder="" >
+								type="text" placeholder="" />
 						</div>
+						
+					</div>
+					
+					<div class="form-group row">
+						
 						<label class="control-label col-md-0">合同类别</label>
 						<div class="col-md-4">
 							<input id="categoryForEditPage" name="category" class="form-control" 
-								type="text" placeholder="" >
+								type="text" placeholder="" />
 						</div>
-					</div>
-					
-					<div class="form-group row">
 						<label class="control-label col-md-0">销售人员</label>
 						<div class="col-md-4">
 							<input id="personForEditPage" name="person" class="form-control" 
-								type="text" placeholder="" >
+								type="text" placeholder="" />
 						</div>
-						<label class="control-label col-md-0">签约日期</label>
-						<div class="col-md-4">
-							<input id="datesForEditPage" name="dates" class="form-control" 
-								type="text" placeholder="" >
-						</div>
+						
 					</div>
 					
 					<div class="form-group row">
+					   <label class="control-label col-md-0">签约日期</label>
+						<div class="col-md-4">
+							<input id="datesForEditPage" name="dates" class="form-control" 
+								type="text" placeholder="" />
+						</div>
 						<label class="control-label col-md-0">合同金额</label>
 						<div class="col-md-4">
 							<input id="moneytForEditPage" name="moneyt" class="form-control" 
-								type="text" placeholder="" >
+								type="text" placeholder="" />
 						</div>
-						<label class="control-label col-md-0">回款金额</label>
-						<div class="col-md-4">
-							<input id="paymentvForEditPage" name="paymentv" class="form-control" 
-								type="text" placeholder="" >
-						</div>
+						
 					</div>
 					
 					<div class="form-group row">
+					    <label class="control-label col-md-0">回款金额</label>
+						<div class="col-md-4">
+							<input id="paymentvForEditPage" name="paymentv" class="form-control" 
+								type="text" placeholder="" />
+						</div>
 						<label class="control-label col-md-0">合同期限</label>
 						<div class="col-md-4">
 							<input id="periodForEditPage" name="period" class="form-control" 
-								type="text" placeholder="" >
+								type="text" placeholder="" />
 						</div>
 					</div>
 				</form>
 			</div>
+			
+			<div class="div-" role="main">
+	
+	<div class="row" style="display: inline-block;">
+		
+		<h3>上传文件</h3>
+		<p th:text="${message}"></p>
+		
+		<p>multipart/form-data类型（需在本地新建文件夹：F:upload）</p>
+		<form action="/test/file" method="post" enctype="multipart/form-data">
+			<input type="file" name="file">
+			<button type="submit">上传</button>
+		</form>
+		<img th:src="@{${resourcePath}}"/>
+		<br>
+		
+		<form action="/test/files" method="post" enctype="multipart/form-data">
+			<input type="file" name="files">
+			<input type="file" name="files">
+			<button type="submit">上传</button>
+		</form>
+		<p>==================================================================</p>
+		<!-- <h3>下载文件</h3>
+		<a href="/test/download?fileName=QQ截图20200609111527.png">download file</a>
+		<br>
+		<p>==================================================================</p> -->
+			
 			<div class="modal-footer">
 				<!-- data-dismiss="modal"关闭模态框 -->
 				<a class="btn btn-secondary" href="#" data-dismiss="modal">
@@ -65,7 +102,7 @@
 				</a>
 				<button id="contractEditBtn" data-dismiss="modal" 
 					class="btn btn-primary" type="button">
-					<i class="fa fa-fw fa-lg fa-check-circle"></i>确定
+					<i class="fa fa-fw fa-lg fa-check-circle"></i>提交更改
 				</button>
 			</div>
 		</div>

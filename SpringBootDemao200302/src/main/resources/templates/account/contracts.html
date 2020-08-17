@@ -179,6 +179,7 @@ function deleteContract(contractId) {
 function updateContract() {
 	var contract = {};
 	contract.contractName = $("#contractNameForEditPage").val();
+	contract.contractId = $("#contractIdForEditPage").val();
 	contract.category = $("#categoryForEditPage").val();
 	contract.person = $("#personForEditPage").val();
 	contract.dates = $("#datesForEditPage").val();
@@ -212,6 +213,7 @@ function initEditModal(contractId) {
 		contentType: "application/json",
 		success : function (rs) {
 			$("#contractNameForEditPage").val(rs.contractName);
+			$("#contractIdForEditPage").val(rs.contractId);
 			$("#categoryForEditPage").val(rs.category);
 			$("#personForEditPage").val(rs.person);
 			$("#datesForEditPage").val(rs.dates);
